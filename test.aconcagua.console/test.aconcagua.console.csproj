@@ -11,8 +11,4 @@
     <PackageReference Include="XPlot.Plotly" Version="3.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\test.aconcagua.common\test.aconcagua.common.csproj" />
-  </ItemGroup>
-
 </Project>

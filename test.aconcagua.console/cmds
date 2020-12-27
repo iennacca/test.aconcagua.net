@@ -1,0 +1,29 @@
+dotnet clean
+dotnet restore
+dotnet build
+dotnet publish -c Release
+
+docker build -t test-aconcagua -f Dockerfile .
+docker create --name test-aconcagua test-aconcagua
+docker start test-aconcagua
+
+docker container rm test-aconcagua
+docker image rm test-aconcagua
+
+docker images
+docker ps -a
+
+docker attach test-aconcagua
+
+# for some reason, the DMXiServer/XPlot reference kills the docker container
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DMXiServer" Version="0.5.13" />
+    <PackageReference Include="XPlot.Plotly" Version="3.0.0" />
+  </ItemGroup>
+
+

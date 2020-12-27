@@ -1,17 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using aconcagua.server;
 using XPlot.Plotly;
-using test.aconcagua.common;
 
 namespace test.aconcagua.console
 {
     class Program
     {
-        static void Main()
+        // static async Task Main(string[] args)
+        // {
+        //     var counter = 0;
+        //     var max = args.Length != 0 ? Convert.ToInt32(args[0]) : -1;
+        //     while (max == -1 || counter < max)
+        //     {
+        //         Console.WriteLine($"Counter: {++counter}");
+        //         await Task.Delay(1000);
+        //     }
+        // }
+
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Task started");
 
             var tester = new ServiceTestHarness(new AconcaguaService(null));
             var version = tester.GetVersion();
@@ -23,6 +34,12 @@ namespace test.aconcagua.console
 
             var serieslist = tester.GetSeries("dmxe://localhost:5001/brb_macrofw.dmxe", new[] { "316NGDP", "316NGDP_YOY" });
             UITestHarness.ShowGraph(serieslist);
+
+            Console.WriteLine("Task done.");
+
+            var max = args.Length != 0 ? Convert.ToInt32(args[0]) : -1;
+            while (true)
+                await Task.Delay(1000);
         }
     }
 

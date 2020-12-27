@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace test.aconcagua.common
+namespace test.aconcagua.console
 {
     public interface ISeries
     {
